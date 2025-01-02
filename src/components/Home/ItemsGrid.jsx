@@ -135,7 +135,7 @@ export default function ItemsGrid() {
 
               {/* Action Button */}
               <Link
-                to={`/item/${post._id}`}
+                to={`/post-details/${post._id}`}
                 className='inline-flex items-center justify-center px-4 py-2 bg-primary hover:bg-primary-dark text-white rounded-md transition-colors mt-4 w-full group'>
                 View Details
                 <ArrowRight className='w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform' />

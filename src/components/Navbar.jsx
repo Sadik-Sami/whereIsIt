@@ -7,21 +7,20 @@ import useAuthContext from '../hooks/useAuthContext';
 
 export default function Navbar() {
   const [isDark, setIsDark] = useState(false);
+  const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isProfileOpen, setIsProfileOpen] = useState(false);
   const { user, logOut } = useAuthContext();
-
-  // Handle theme toggle
   useEffect(() => {
-    if (isDark) {
+    if (theme === 'dark') {
       document.documentElement.classList.add('dark');
     } else {
       document.documentElement.classList.remove('dark');
     }
-  }, [isDark]);
-
+    localStorage.setItem('theme', theme);
+  }, [theme]);
   const toggleTheme = () => {
-    setIsDark(!isDark);
+    setTheme((prevTheme) => (prevTheme === 'light' ? 'dark' : 'light'));
   };
 
   const menuVariants = {

@@ -4,6 +4,10 @@ import Home from '../pages/Home';
 import LostAndFound from '../pages/LostAndFound';
 import Login from '../pages/Login';
 import Register from '../pages/Register';
+import PrivateRoute from './PrivateRoute';
+import AddPost from '../pages/AddPost';
+import UpdatePost from '../pages/UpdatePost';
+import PostDetails from '../pages/PostDetails';
 const router = createBrowserRouter([
   {
     path: '/',
@@ -20,6 +24,30 @@ const router = createBrowserRouter([
       },
       { path: '/login', element: <Login /> },
       { path: '/register', element: <Register /> },
+      {
+        path: '/add-item',
+        element: (
+          <PrivateRoute>
+            <AddPost />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: '/update-item/:id',
+        element: (
+          <PrivateRoute>
+            <UpdatePost />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: '/post-details/:id',
+        element: (
+          <PrivateRoute>
+            <PostDetails />
+          </PrivateRoute>
+        ),
+      },
     ],
   },
 ]);
