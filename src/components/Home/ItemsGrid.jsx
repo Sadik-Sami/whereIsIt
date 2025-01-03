@@ -12,7 +12,7 @@ export default function ItemsGrid() {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/posts');
+        const response = await axios.get('https://whereisit-tau.vercel.app/posts');
         setPosts(response.data.posts.slice(0, 6)); // Only take first 6 posts
         setLoading(false);
       } catch (err) {

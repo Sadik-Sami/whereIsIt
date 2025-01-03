@@ -156,7 +156,6 @@ export default function UpdatePost() {
     const oldData = { ...formData };
 
     try {
-      // Update just the changed fields
       setInitialData(formData);
       setHasChanges(false);
       const response = await axiosSecure.patch(`/update-post/${id}?email=${user.email}`, updates);
@@ -167,7 +166,6 @@ export default function UpdatePost() {
         throw new Error(response.data.message);
       }
     } catch (error) {
-      // If failed, populate with initial data
       setFormData(oldData);
       setInitialData(oldData);
       toast.error(error.response?.data?.message || 'Failed to update post');
@@ -175,8 +173,6 @@ export default function UpdatePost() {
       setSubmitting(false);
     }
   };
-
-  // Prompt user when leaving with unsaved changes
   useEffect(() => {
     const handleBeforeUnload = (e) => {
       if (hasChanges) {
@@ -218,28 +214,23 @@ export default function UpdatePost() {
   return (
     <div className='min-h-screen bg-light-background dark:bg-dark-background py-12'>
       <div className='max-w-4xl mx-auto px-4 sm:px-6 lg:px-8'>
-        {/* Back Button */}
         <Link
           to='/my-posts'
           className='inline-flex items-center text-light-foreground/70 dark:text-dark-foreground/70 hover:text-primary mb-6'>
           <ArrowLeft className='w-4 h-4 mr-2' />
           Back to My Posts
         </Link>
-
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           className='bg-light-card dark:bg-dark-card rounded-lg shadow-xl overflow-hidden'>
-          {/* Header */}
           <div className='border-b border-light-border dark:border-dark-border p-6'>
             <h1 className='text-2xl font-bold text-light-foreground dark:text-dark-foreground'>Update Post</h1>
             <p className='text-light-foreground/70 dark:text-dark-foreground/70 mt-1'>
               Make changes to your lost or found item post
             </p>
           </div>
-
           <form onSubmit={handleSubmit} className='p-6 space-y-8'>
-            {/* Post Type */}
             <div className='grid grid-cols-2 gap-4'>
               <button
                 type='button'
@@ -262,8 +253,6 @@ export default function UpdatePost() {
                 Found Item
               </button>
             </div>
-
-            {/* Image Preview and URL */}
             <div className='space-y-4'>
               <label className='block text-sm font-medium text-light-foreground dark:text-dark-foreground'>
                 <ImageIcon className='w-4 h-4 inline-block mr-2' />
@@ -291,8 +280,6 @@ export default function UpdatePost() {
                 className='w-full px-4 py-2 rounded-lg border border-light-border dark:border-dark-border bg-light-background dark:bg-dark-background text-light-foreground dark:text-dark-foreground focus:outline-none focus:ring-2 focus:ring-primary'
               />
             </div>
-
-            {/* Title and Description */}
             <div className='space-y-4'>
               <div>
                 <label className='block text-sm font-medium text-light-foreground dark:text-dark-foreground mb-2'>
@@ -323,8 +310,6 @@ export default function UpdatePost() {
                 />
               </div>
             </div>
-
-            {/* Category and Location */}
             <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
               <div>
                 <label className='block text-sm font-medium text-light-foreground dark:text-dark-foreground mb-2'>
@@ -373,8 +358,6 @@ export default function UpdatePost() {
                 className='w-full px-4 py-2 rounded-lg border border-light-border dark:border-dark-border bg-light-background dark:bg-dark-background text-light-foreground dark:text-dark-foreground focus:outline-none focus:ring-2 focus:ring-primary'
               />
             </div>
-
-            {/* Contact Information */}
             <div className='space-y-4 bg-light-muted dark:bg-dark-muted p-4 rounded-lg'>
               <h3 className='font-medium text-light-foreground dark:text-dark-foreground'>Contact Information</h3>
               <div>
@@ -402,8 +385,6 @@ export default function UpdatePost() {
                 />
               </div>
             </div>
-
-            {/* Action Buttons */}
             <div className='flex items-center justify-end gap-4 pt-4 border-t border-light-border dark:border-dark-border'>
               <Link
                 to='/my-posts'

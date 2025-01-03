@@ -60,12 +60,12 @@ const AuthProvider = ({ children }) => {
       console.log('State Captured', currentUser);
       if (currentUser?.email) {
         const user = { email: currentUser.email };
-        const { data } = await axios.post('http://localhost:5000/login', user, { withCredentials: true });
+        const { data } = await axios.post('https://whereisit-tau.vercel.app/login', user, { withCredentials: true });
         if (data.success) {
           setLoading(false);
         }
       } else {
-        const { data } = await axios.post('http://localhost:5000/logout', {}, { withCredentials: true });
+        const { data } = await axios.post('https://whereisit-tau.vercel.app/logout', {}, { withCredentials: true });
         if (data.success) {
           setLoading(false);
         }

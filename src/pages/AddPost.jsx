@@ -20,6 +20,7 @@ import {
 } from 'lucide-react';
 import useAxiosSecure from '../hooks/useAxiosSecure';
 import useAuthContext from '../hooks/useAuthContext';
+import SEO from '../components/SEO';
 
 const categories = ['electronics', 'documents', 'pets', 'accessories', 'jewelry', 'wallets', 'keys', 'others'];
 
@@ -91,7 +92,7 @@ const AddPost = () => {
         ...formData,
         name: user.displayName,
         email: user.email,
-        status: null, // For marking as recovered later
+        status: null,
         createdAt: new Date().toISOString(),
       };
 
@@ -113,6 +114,10 @@ const AddPost = () => {
 
   return (
     <div className='min-h-screen bg-light-background dark:bg-dark-background py-12'>
+      <SEO
+        title='Add New Post'
+        description="Create a new lost or found item post. Help others find their lost items or report items you've found."
+      />
       <div className='max-w-4xl mx-auto px-4 sm:px-6 lg:px-8'>
         {/* Back Button */}
         <Link

@@ -4,7 +4,7 @@ import useAuthContext from './useAuthContext';
 import { useNavigate } from 'react-router-dom';
 
 const axiosInstance = axios.create({
-  baseURL: 'http://localhost:5000/',
+  baseURL: 'https://whereisit-tau.vercel.app/',
   withCredentials: true,
 });
 
@@ -21,7 +21,7 @@ const useAxiosSecure = () => {
         console.log('Error Captured in Interceptor', error);
         if (error.status === 401 || error.status === 403) {
           logOut()
-            .then(() => navigate('/'))
+            .then(() => navigate('/login'))
             .catch((error) => console.log(error));
         }
         return Promise.reject(error);

@@ -8,11 +8,14 @@ import PrivateRoute from './PrivateRoute';
 import AddPost from '../pages/AddPost';
 import UpdatePost from '../pages/UpdatePost';
 import PostDetails from '../pages/PostDetails';
+import MyPosts from '../pages/MyPosts';
+import RecoveredItems from '../pages/RecoveredItems';
+import ErrorPage from '../pages/ErrorPage';
 const router = createBrowserRouter([
   {
     path: '/',
     element: <MainLayout />,
-    errorElement: <div>No Routes</div>,
+    errorElement: <ErrorPage />,
     children: [
       {
         path: '/',
@@ -45,6 +48,22 @@ const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <PostDetails />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: '/my-items',
+        element: (
+          <PrivateRoute>
+            <MyPosts />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: '/recovered',
+        element: (
+          <PrivateRoute>
+            <RecoveredItems />
           </PrivateRoute>
         ),
       },

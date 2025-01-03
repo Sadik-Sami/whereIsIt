@@ -19,8 +19,10 @@ import {
 } from 'lucide-react';
 import useAxiosSecure from '../hooks/useAxiosSecure';
 import useAuthContext from '../hooks/useAuthContext';
+import ScrollToTop from '../components/ScrollToTop';
+import SEO from '../components/SEO';
 
-export default function PostDetails() {
+const PostDetails = () => {
   const { id } = useParams();
   const { user } = useAuthContext();
   const axiosSecure = useAxiosSecure();
@@ -44,7 +46,7 @@ export default function PostDetails() {
   useEffect(() => {
     const fetchPost = async () => {
       try {
-        const response = await axiosSecure.get(`/post/${id}`);
+        const response = await axiosSecure.get(`/post/${id}?email=${user?.email}`);
         setPost(response.data.post);
         setError(null);
       } catch (error) {
@@ -70,13 +72,13 @@ export default function PostDetails() {
           title: post.title,
           postType: post.postType,
           category: post.category,
+          thumbnail: post.thumbnail,
         },
       };
 
       await axiosSecure.post(`/recover-item?email=${user.email}`, recoveryPayload);
       toast.success('Item recovery recorded successfully!');
       setShowModal(false);
-      // Update local post state to reflect recovery
       setPost((prev) => ({ ...prev, status: 'recovered' }));
     } catch (error) {
       toast.error('Failed to record item recovery');
@@ -88,6 +90,7 @@ export default function PostDetails() {
   if (loading) {
     return (
       <div className='min-h-screen bg-light-background dark:bg-dark-background flex items-center justify-center'>
+        <SEO title='Loading...' description='Loading post details' />
         <Loader2 className='w-8 h-8 animate-spin text-primary' />
       </div>
     );
@@ -96,6 +99,7 @@ export default function PostDetails() {
   if (error || !post) {
     return (
       <div className='min-h-screen bg-light-background dark:bg-dark-background flex items-center justify-center'>
+        <SEO title='Post Not Found' description='The requested post could not be found' />
         <div className='text-center'>
           <AlertCircle className='w-12 h-12 text-red-500 mx-auto mb-4' />
           <p className='text-light-foreground/70 dark:text-dark-foreground/70 mb-4'>{error || 'Post not found'}</p>
@@ -110,6 +114,8 @@ export default function PostDetails() {
 
   return (
     <div className='min-h-screen bg-light-background dark:bg-dark-background py-12'>
+      <SEO title={post.title} description={post.description} type='article' image={post.thumbnail} />
+      <ScrollToTop />
       <div className='max-w-4xl mx-auto px-4 sm:px-6 lg:px-8'>
         {/* Back Button */}
         <Link
@@ -327,4 +333,5 @@ export default function PostDetails() {
       </div>
     </div>
   );
-}
+};
+export default PostDetails;

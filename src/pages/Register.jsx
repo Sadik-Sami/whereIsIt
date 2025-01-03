@@ -1,12 +1,16 @@
 import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { motion } from 'framer-motion';
 import { Mail, Lock, User, ImageIcon, Search } from 'lucide-react';
 import useAuthContext from '../hooks/useAuthContext';
+import SEO from '../components/SEO';
 
 export default function Register() {
   const { createUser, updateUserProfile } = useAuthContext();
+  const location = useLocation();
+  const from = location.state || '/';
+  console.log(from);
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
@@ -57,8 +61,8 @@ export default function Register() {
       const result = await createUser(formData.email, formData.password);
       if (result.user) {
         await updateUserProfile(formData.name, formData.photoURL);
-        toast.success('Registration successful!');
-        navigate('/login');
+        toast.success(`Welcome To WhereIsIt, ${result.user?.name}`);
+        navigate(from);
       }
     } catch (error) {
       console.error('Registration error:', error);
@@ -83,6 +87,7 @@ export default function Register() {
   return (
     <div className='min-h-screen bg-light-background dark:bg-dark-background flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8'>
       <div className='max-w-md w-full'>
+        <SEO title='Register' description='Register to WhereIsIt to manage your lost and found items' />
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
