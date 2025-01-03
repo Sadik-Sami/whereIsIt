@@ -74,7 +74,6 @@
 - **Styling**: Tailwind CSS
 - **Animations**: Framer Motion
 - **State Management**: React Context
-- **Form Handling**: React Hook Form
 - **Icons**: Lucide React
 - **HTTP Client**: Axios
 - **Date Handling**: React DatePicker
