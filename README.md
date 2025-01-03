@@ -2,7 +2,7 @@
 
 # WhereIsIt - Lost & Found Platform 🔍
 
-[Visit Live Site]([URL](https://lost-and-found-245c3.web.app/))
+[Visit Live Site]([URL](https://lost-and-found-245c3.web.app))
 
 ## 🌟 Overview
 
