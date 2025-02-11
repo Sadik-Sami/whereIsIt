@@ -34,7 +34,7 @@ export default function CTA() {
                   className="flex flex-col sm:flex-row gap-4 justify-center"
                 >
                   <Link
-                    to="/report/lost"
+                    to="/add-item"
                     className="inline-flex items-center justify-center px-6 py-3 bg-primary hover:bg-primary-dark text-white rounded-md transition-colors text-lg font-medium group"
                   >
                     Report Lost Item
