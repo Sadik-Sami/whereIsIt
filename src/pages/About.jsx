@@ -99,7 +99,7 @@ export default function About() {
 			</section>
 
 			{/* Values Section */}
-			<section className='py-16 md:py-24 bg-light-muted/50 dark:bg-dark-muted/50'>
+			<section className='py-16 md:py-24 bg-light-muted dark:bg-dark-muted/90'>
 				<div className='container mx-auto px-4 md:px-6'>
 					<motion.div
 						initial={{ opacity: 0, y: 20 }}
@@ -185,7 +185,7 @@ export default function About() {
 					</motion.div>
 
 					<div className='relative'>
-						<div className='absolute left-1/2 transform -translate-x-1/2 h-full w-px bg-light-border dark:bg-dark-border' />
+						<div className='absolute left-1/2 transform -translate-x-1/2 h-full w-px bg-dark-muted/30 dark:bg-dark-border' />
 
 						<div className='space-y-12'>
 							{timeline.map((item, index) => (
